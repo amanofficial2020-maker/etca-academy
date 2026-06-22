@@ -1,26 +1,20 @@
 import { Link } from 'react-router-dom'
+import logoImage from '../../assets/etca-logo.png'
 
 export default function Logo({ size = 40, showSubtitle = true }) {
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-      <div
+      <img
+        src={logoImage}
+        alt="ETCA Logo"
         style={{
           width: size,
           height: size,
-          borderRadius: '8px',
-          background: 'linear-gradient(135deg, #d4af37, #b8960c)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          fontWeight: 900,
-          fontSize: size * 0.38,
-          color: '#0a0a0a',
-          letterSpacing: '-1px',
+          objectFit: 'contain',
           flexShrink: 0,
         }}
-      >
-        E
-      </div>
+      />
+
       <div>
         <div
           style={{
@@ -33,6 +27,7 @@ export default function Logo({ size = 40, showSubtitle = true }) {
         >
           ETCA
         </div>
+
         {showSubtitle && (
           <div
             style={{
