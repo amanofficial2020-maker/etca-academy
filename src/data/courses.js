@@ -205,7 +205,6 @@ Market cap ranking determines liquidity and volatility profile.`,
     ],
   },
   {
-    id: 'ict-concepts',
     slug: 'ict-concepts',
     title: 'ICT Concepts',
     icon: '📊',
