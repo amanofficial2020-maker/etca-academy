@@ -173,3 +173,19 @@ Send Payment Screenshot
 
 </div>
 )}
+<Link
+  to={`/certificate/${course.slug}`}
+  className="etca-btn-outline etca-btn-sm"
+  style={{ width: '100%', textAlign: 'center', marginTop: '12px' }}
+>
+  View Certificate
+</Link>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
+  )
+}
