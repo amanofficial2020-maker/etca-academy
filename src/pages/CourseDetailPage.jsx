@@ -1,4 +1,5 @@
 import { Link, useParams } from 'react-router-dom'
+import { useState } from 'react'
 import { getCourseBySlug, getAllLessons } from '../data/courses'
 import StarRating from '../components/common/StarRating'
 import paymentQr from '../assets/payment-qr.png'
@@ -6,6 +7,7 @@ import paymentQr from '../assets/payment-qr.png'
 export default function CourseDetailPage() {
   const { slug } = useParams()
   const course = getCourseBySlug(slug)
+const [showPayment, setShowPayment] = useState(false)
 
   if (!course) {
     return (
@@ -108,7 +110,19 @@ export default function CourseDetailPage() {
                 <Link to={`/courses/${course.slug}/lesson/${allLessons[0]?.id}`} className="etca-btn-primary" style={{ width: '100%', textAlign: 'center', marginBottom: '12px' }}>
                   Start Learning
                 </Link>
-                <div
+<button
+  className="etca-btn-primary"
+  style={{
+    width: '100%',
+    marginTop: '12px',
+    marginBottom: '12px'
+  }}
+  onClick={() => setShowPayment(!showPayment)}
+>
+  Enroll Now — {course.price}
+</button>
+                {showPayment && (
+<div
   style={{
     border: '1px solid rgba(212,175,55,0.3)',
     borderRadius: '12px',
@@ -154,4 +168,8 @@ marginTop: '12px'
 
 >
 
-Send Payment Screenshot </a>
+Send Payment Screenshot
+</a>
+
+</div>
+)}
