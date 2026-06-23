@@ -1,6 +1,7 @@
 import { Link, useParams } from 'react-router-dom'
 import { getCourseBySlug, getAllLessons } from '../data/courses'
 import StarRating from '../components/common/StarRating'
+import paymentQr from '../assets/payment-qr.png'
 
 export default function CourseDetailPage() {
   const { slug } = useParams()
@@ -107,17 +108,50 @@ export default function CourseDetailPage() {
                 <Link to={`/courses/${course.slug}/lesson/${allLessons[0]?.id}`} className="etca-btn-primary" style={{ width: '100%', textAlign: 'center', marginBottom: '12px' }}>
                   Start Learning
                 </Link>
-                <Link to="/register" className="etca-btn-outline etca-btn-sm" style={{ width: '100%', textAlign: 'center' }}>
-                  Enroll Now — {course.price}
-                </Link>
-                <Link to={`/certificate/${course.slug}`} className="etca-btn-outline etca-btn-sm" style={{ width: '100%', textAlign: 'center', marginTop: '12px' }}>
-                  View Certificate
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </>
-  )
-}
+                <div
+  style={{
+    border: '1px solid rgba(212,175,55,0.3)',
+    borderRadius: '12px',
+    padding: '16px',
+    marginTop: '12px',
+    textAlign: 'center',
+    background: '#111111'
+  }}
+>
+  <h4 style={{ color: '#d4af37', marginBottom: '12px' }}>
+    Enroll Now — {course.price}
+  </h4>
+
+<img
+src={paymentQr}
+alt="Payment QR"
+style={{
+width: '220px',
+maxWidth: '100%',
+borderRadius: '10px',
+marginBottom: '12px'
+}}
+/>
+
+  <p style={{ color: '#ffffff', fontWeight: 'bold' }}>
+    UPI ID: 6263943267@axl
+  </p>
+
+  <p style={{ color: '#a0a0a0', fontSize: '14px' }}>
+    Scan QR Code and complete payment
+  </p>
+
+<a
+href="https://wa.me/916263943267"
+target="_blank"
+rel="noreferrer"
+className="etca-btn-primary"
+style={{
+width: '100%',
+display: 'block',
+marginTop: '12px'
+}}
+
+>
+
+Send Payment Screenshot </a>
