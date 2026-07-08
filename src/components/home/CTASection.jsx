@@ -24,7 +24,7 @@ export default function CTASection() {
         </div>
         <p style={{ color: '#666666', fontSize: '14px', marginTop: '24px' }}>
           Contact us at{' '}
-          <Link to="/contact" style={{ color: '#d4af37' }}>info@etca-academy.com</Link>
+          <Link to="/contact" style={{ color: '#d4af37' }}>iamcryptonist@gmail.com</Link>
         </p>
       </div>
     </section>
