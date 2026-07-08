@@ -1,60 +1,89 @@
 import { createContext, useContext, useState, useEffect } from 'react'
+import { supabase } from '../lib/supabase'
 
 const AuthContext = createContext(null)
-
-const STORAGE_KEY = 'etca_user'
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    const stored = localStorage.getItem(STORAGE_KEY)
-    if (stored) {
-      try {
-        setUser(JSON.parse(stored))
-      } catch {
-        localStorage.removeItem(STORAGE_KEY)
+    const loadUser = async () => {
+      const { data } = await supabase.auth.getUser()
+
+      if (data?.user) {
+        setUser({
+          id: data.user.id,
+          email: data.user.email,
+          name: data.user.user_metadata?.name || 'Student',
+        })
       }
+
+      setLoading(false)
     }
-    setLoading(false)
+
+    loadUser()
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (session?.user) {
+        setUser({
+          id: session.user.id,
+          email: session.user.email,
+          name: session.user.user_metadata?.name || 'Student',
+        })
+      } else {
+        setUser(null)
+      }
+    })
+
+    return () => subscription.unsubscribe()
   }, [])
 
-  const login = (email, password) => {
-    const demoUser = {
-      id: '1',
-      name: email.split('@')[0].replace(/[._]/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase()),
+  const register = async (name, email, password) => {
+    const { data, error } = await supabase.auth.signUp({
       email,
-      enrolledCourses: ['forex-trading', 'ict-concepts'],
-      completedLessons: ['l1', 'l2'],
-      joinDate: '2026-01-15',
-    }
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(demoUser))
-    setUser(demoUser)
-    return demoUser
+      password,
+      options: {
+        data: {
+          name,
+        },
+      },
+    })
+
+    if (error) throw error
+
+    return data
   }
 
-  const register = (name, email, _password) => {
-    const newUser = {
-      id: Date.now().toString(),
-      name,
+  const login = async (email, password) => {
+    const { data, error } = await supabase.auth.signInWithPassword({
       email,
-      enrolledCourses: [],
-      completedLessons: [],
-      joinDate: new Date().toISOString().split('T')[0],
-    }
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(newUser))
-    setUser(newUser)
-    return newUser
+      password,
+    })
+
+    if (error) throw error
+
+    return data
   }
 
-  const logout = () => {
-    localStorage.removeItem(STORAGE_KEY)
+  const logout = async () => {
+    await supabase.auth.signOut()
     setUser(null)
   }
 
   return (
-    <AuthContext.Provider value={{ user, loading, login, register, logout, isAuthenticated: !!user }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        loading,
+        login,
+        register,
+        logout,
+        isAuthenticated: !!user,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   )
@@ -62,6 +91,10 @@ export function AuthProvider({ children }) {
 
 export function useAuth() {
   const ctx = useContext(AuthContext)
-  if (!ctx) throw new Error('useAuth must be used within AuthProvider')
+
+  if (!ctx) {
+    throw new Error('useAuth must be used within AuthProvider')
+  }
+
   return ctx
 }

@@ -67,7 +67,7 @@ export default function Footer() {
             <h4 style={footerHeadingStyle}>Contact</h4>
             <ul style={{ listStyle: 'none' }}>
               <li style={{ color: '#a0a0a0', fontSize: '14px', marginBottom: '10px' }}>
-                info@etca-academy.com
+                iamcryptonist@gmail.com
               </li>
               <li style={{ color: '#a0a0a0', fontSize: '14px', marginBottom: '10px' }}>
                 Telegram Community

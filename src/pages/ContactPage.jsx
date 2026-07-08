@@ -87,10 +87,10 @@ export default function ContactPage() {
               </h2>
 
               {[
-                { icon: '📧', title: 'Email', value: 'info@etca-academy.com', sub: 'We reply within 24 hours' },
+                { icon: '📧', title: 'Email', value: 'iamcryptonist@gmail.com', sub: 'We reply within 24 hours' },
                 { icon: '💬', title: 'Telegram', value: '@ETCACommunity', sub: 'Join our trading community' },
                 { icon: '🎮', title: 'Discord', value: 'ETCA Trading Hub', sub: 'Live discussions & alerts' },
-                { icon: '📱', title: 'WhatsApp', value: '+1 (555) 000-0000', sub: 'Mon–Fri, 9AM–6PM GMT' },
+                { icon: '📱', title: 'WhatsApp', value: '+91 6263943267', sub: 'Mon–Fri, 9AM–6PM GMT' },
               ].map((item) => (
                 <div
                   key={item.title}

@@ -1,31 +1,27 @@
 import { Link } from 'react-router-dom'
+import logo from '../../assets/logo etca main icon.jpeg'
 
-export function LogoLink({ size = 36 }) {
+export function LogoLink({ size = 60 }) {
   return (
     <Link
       to="/"
       style={{
         display: 'flex',
         alignItems: 'center',
-        gap: '10px',
+        gap: '12px',
         textDecoration: 'none'
       }}
     >
-      <div
+      <img
+        src={logo}
+        alt="ETCA Academy"
         style={{
           width: size,
           height: size,
-          borderRadius: '50%',
-          background: '#d4af37',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          color: '#000',
-          fontWeight: 'bold'
+          objectFit: 'contain',
+          borderRadius: '8px'
         }}
-      >
-        E
-      </div>
+      />
 
       <span
         style={{
