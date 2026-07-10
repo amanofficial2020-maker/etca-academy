@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
+import emailjs from '@emailjs/browser'
 
 const contactItems = [
   {
@@ -40,6 +41,9 @@ const contactItems = [
 ]
 
 export default function ContactPage() {
+
+  const formRef = useRef(null)
+
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -48,6 +52,7 @@ export default function ContactPage() {
   })
 
   const [submitted, setSubmitted] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   const handleChange = (e) => {
     setForm({
@@ -56,10 +61,51 @@ export default function ContactPage() {
     })
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
+ const handleSubmit = async (e) => {
+  e.preventDefault()
+
+  setLoading(true)
+
+  try {
+   await emailjs.send(
+  'iamcryptonist@gmail.com',
+  'template_vl3n2tz',
+  {
+    name: form.name,
+    email: form.email,
+    subject: form.subject,
+    message: form.message,
+  },
+  'JCX5fmnEpPigeR06V'
+)
+await emailjs.send(
+  'iamcryptonist@gmail.com',
+  'template_zgx38j7',
+  {
+    name: form.name,
+    email: form.email,
+    subject: form.subject,
+    message: form.message,
+  },
+  'JCX5fmnEpPigeR06V'
+)
+
     setSubmitted(true)
+
+    setForm({
+      name: '',
+      email: '',
+      subject: '',
+      message: '',
+    })
+
+  } catch (error) {
+    console.error(error)
+    alert('Message send nahi hua. Please try again.')
   }
+
+  setLoading(false)
+}
 
   return (
     <>
