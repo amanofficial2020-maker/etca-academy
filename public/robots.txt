@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /dashboard
+Disallow: /login
+Disallow: /register
+Disallow: /certificate/
+Disallow: /courses/*/lesson/
+
+Sitemap: https://etca-academy.vercel.app/sitemap.xml

@@ -23,8 +23,7 @@ export default function AboutSection() {
             </p>
             <p style={{ color: '#a0a0a0', lineHeight: 1.7, fontSize: '16px', marginBottom: '32px' }}>
               With over 7 years of real-market experience, our mentors teach proven
-              strategies across Forex, Gold, and Crypto — including ICT and Smart Money
-              Concepts used by institutional traders worldwide.
+              trading education across Forex, Gold, and Crypto markets.
             </p>
             <Link to="/register" className="etca-btn-primary">Start Your Journey</Link>
           </div>

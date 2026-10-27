@@ -56,7 +56,7 @@ export default function HeroSection() {
           </h1>
 
           <p style={{ fontSize: 'clamp(16px, 2.5vw, 20px)', color: '#a0a0a0', lineHeight: 1.7, marginBottom: '40px', maxWidth: '620px' }}>
-            Learn Forex, Gold, Crypto, ICT and Smart Money Concepts from Basic to Advanced.
+            Learn Forex, Gold, and Crypto trading with expert-led education from beginner to advanced.
           </p>
 
           <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
@@ -65,7 +65,7 @@ export default function HeroSection() {
           </div>
 
           <div style={{ display: 'flex', gap: '32px', marginTop: '56px', flexWrap: 'wrap' }}>
-            {['Forex', 'Gold', 'Crypto', 'ICT', 'SMC'].map((tag) => (
+            {['Forex', 'Gold', 'Crypto'].map((tag) => (
               <span key={tag} style={{ color: '#666666', fontSize: '13px', fontWeight: 600, letterSpacing: '2px', textTransform: 'uppercase' }}>
                 {tag}
               </span>

@@ -1,21 +1,21 @@
 export const TESTIMONIALS = [
   {
-    name: 'James Okafor',
-    role: 'Forex Trader, Lagos',
+    name: 'Rahul Sharma',
+    role: 'Forex Trader, Raipur',
     quote:
-      'ETCA transformed my trading completely. The ICT and Smart Money modules gave me the edge I was missing for years.',
+      'ETCA transformed my trading completely. The course modules gave me the edge I was missing for years.',
     rating: 5,
   },
   {
-    name: 'Sarah Mitchell',
-    role: 'Gold Trader, London',
+    name: 'Priya Verma',
+    role: 'Gold Trader, Indore',
     quote:
       'The gold trading course is exceptional. I went from losing consistently to profitable within three months of applying ETCA strategies.',
     rating: 5,
   },
   {
-    name: 'David Chen',
-    role: 'Crypto Enthusiast, Singapore',
+    name: 'Amit Patel',
+    role: 'Crypto Enthusiast, Mumbai',
     quote:
       'Best academy I have joined. The mentors are real traders who actually live what they teach. Worth every penny.',
     rating: 5,

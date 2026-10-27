@@ -8,7 +8,7 @@ export default function BlogPage() {
         <div className="etca-container">
           <span className="etca-section-label">Insights & Education</span>
           <h1>Trading Blog</h1>
-          <p>Expert articles on Forex, Gold, Crypto, ICT, Smart Money Concepts, and trading psychology.</p>
+          <p>Articles on Forex, Gold, Crypto, market analysis, and trading psychology.</p>
         </div>
       </div>
 

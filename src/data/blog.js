@@ -1,18 +1,16 @@
 export const BLOG_POSTS = [
   {
     id: 'understanding-market-structure',
-    title: 'Understanding Market Structure: The Foundation of Smart Money Trading',
+    title: 'Market Structure Basics: Trends, Ranges, and Key Levels',
     excerpt:
-      'Learn how institutional traders use break of structure and change of character to identify high-probability setups.',
-    category: 'Smart Money',
+      'Learn to recognize trends, ranges, support, resistance, and context across multiple chart timeframes.',
+    category: 'Market Analysis',
     author: 'ETCA Team',
     date: '2026-05-15',
     readTime: '8 min read',
-    content: `Market structure is the backbone of every institutional trading strategy. Before you can identify order blocks or fair value gaps, you must understand how price creates higher highs, higher lows, and when that pattern breaks.
+    content: `Market structure describes how prices move through trends, ranges, and turning points. Learning to identify higher highs and higher lows, or lower highs and lower lows, can help traders describe the current direction of a market.
 
-At ETCA, we teach students to read market structure across all timeframes — from the daily chart down to the 15-minute execution timeframe. This multi-timeframe approach ensures you're always trading in alignment with the bigger picture.
-
-The key concepts include Break of Structure (BOS), Change of Character (CHoCH), and identifying premium vs discount zones. Master these, and your win rate will transform.`,
+Support and resistance are useful reference levels for organizing chart analysis. Comparing price action across higher and lower timeframes can add context, while risk management remains essential for every trading plan.`,
   },
   {
     id: 'gold-trading-session-guide',
@@ -23,29 +21,11 @@ The key concepts include Break of Structure (BOS), Change of Character (CHoCH), 
     author: 'Marcus Reid',
     date: '2026-04-28',
     readTime: '6 min read',
-    content: `Gold (XAU/USD) is one of the most traded instruments at ETCA, and for good reason. Its correlation with the US Dollar, geopolitical events, and institutional order flow makes it a prime asset for smart money strategies.
+    content: `Gold (XAU/USD) is one of the most traded instruments at ETCA, and for good reason. Its correlation with the US Dollar, geopolitical events, and institutional order flow makes it a popular asset for technical and macro analysis.
 
 The London open (8:00 AM GMT) and New York overlap (1:00 PM – 4:00 PM GMT) are the two highest-probability windows for gold trades. During these sessions, liquidity sweeps and reversal setups appear with remarkable consistency.
 
 In this guide, we break down how to identify the daily bias, mark key liquidity levels, and execute with precision during these golden hours.`,
-  },
-  {
-    id: 'ict-kill-zones-explained',
-    title: 'ICT Kill Zones Explained: When Institutions Move the Market',
-    excerpt:
-      'A deep dive into the London Kill Zone, New York Kill Zone, and Asian session — and how to trade each one.',
-    category: 'ICT Concepts',
-    author: 'ETCA Team',
-    date: '2026-04-10',
-    readTime: '10 min read',
-    content: `Inner Circle Trader (ICT) methodology revolutionized how retail traders understand institutional timing. Kill zones are specific time windows when smart money is most active — and when the best setups form.
-
-The three primary kill zones are:
-- Asian Range (8:00 PM – 12:00 AM EST): Range formation
-- London Kill Zone (2:00 AM – 5:00 AM EST): Liquidity raids and reversals
-- New York Kill Zone (7:00 AM – 10:00 AM EST): Highest volatility and trend continuation
-
-ETCA students learn to combine kill zone timing with order block entries for surgical precision in their trades.`,
   },
   {
     id: 'risk-management-rules',

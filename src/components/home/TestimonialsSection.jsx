@@ -8,6 +8,7 @@ export default function TestimonialsSection() {
         <div style={{ textAlign: 'center' }}>
           <span className="etca-section-label">Success Stories</span>
           <h2 className="etca-section-title">Student Testimonials</h2>
+          <p style={{ color: '#777777', fontSize: '13px', marginTop: '12px' }}>Sample testimonials for illustration; verified student feedback will replace these examples.</p>
           <p className="etca-section-sub" style={{ margin: '0 auto' }}>
             Hear from traders who transformed their results with ETCA.
           </p>

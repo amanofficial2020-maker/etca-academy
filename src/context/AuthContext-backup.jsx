@@ -25,7 +25,7 @@ export function AuthProvider({ children }) {
       id: '1',
       name: email.split('@')[0].replace(/[._]/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase()),
       email,
-      enrolledCourses: ['forex-trading', 'ict-concepts'],
+      enrolledCourses: ['forex-trading'],
       completedLessons: ['l1', 'l2'],
       joinDate: '2026-01-15',
     }

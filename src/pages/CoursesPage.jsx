@@ -9,7 +9,7 @@ export default function CoursesPage() {
         <div className="etca-container">
           <span className="etca-section-label">Our Programs</span>
           <h1>Trading Courses</h1>
-          <p>Master Forex, Gold, Crypto, ICT and Smart Money Concepts with expert-led programs.</p>
+          <p>Explore expert-led trading programs in Forex, Gold, and Crypto.</p>
         </div>
       </div>
 
