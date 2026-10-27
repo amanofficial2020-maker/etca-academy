@@ -13,7 +13,14 @@ const SIDEBAR_LINKS = [
 
 export default function DashboardLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [loggingOut, setLoggingOut] = useState(false)
   const { user, logout } = useAuth()
+
+  const handleLogout = async () => {
+    setLoggingOut(true)
+    await logout()
+    setLoggingOut(false)
+  }
 
   return (
     <div className="etca-dashboard-layout">
@@ -43,8 +50,8 @@ export default function DashboardLayout() {
             {user?.name}
           </div>
           <div style={{ color: '#666666', fontSize: '12px', marginBottom: '12px' }}>{user?.email}</div>
-          <button onClick={logout} className="etca-btn-outline etca-btn-sm" style={{ width: '100%' }}>
-            Logout
+          <button onClick={handleLogout} disabled={loggingOut} className="etca-btn-outline etca-btn-sm" style={{ width: '100%' }}>
+            {loggingOut ? 'Logging Out...' : 'Logout'}
           </button>
         </div>
       </aside>

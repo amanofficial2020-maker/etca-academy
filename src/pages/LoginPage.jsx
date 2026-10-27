@@ -6,19 +6,37 @@ export default function LoginPage() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
   const { login } = useAuth()
   const navigate = useNavigate()
   const location = useLocation()
   const from = location.state?.from?.pathname || '/dashboard'
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
+    setError('')
+
     if (!email || !password) {
       setError('Please fill in all fields.')
       return
     }
-    login(email, password)
-    navigate(from, { replace: true })
+
+    setLoading(true)
+
+    try {
+      await login(email, password)
+      navigate(from, { replace: true })
+    } catch (err) {
+      if (err.message?.includes('Email not confirmed')) {
+        setError('Please verify your email before logging in. Check your inbox for the verification link.')
+      } else if (err.message?.includes('Invalid login credentials')) {
+        setError('Invalid email or password. Please try again.')
+      } else {
+        setError(err.message || 'Login failed. Please try again.')
+      }
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -45,8 +63,8 @@ export default function LoginPage() {
           <label className="etca-label" htmlFor="password">Password</label>
           <input id="password" type="password" className="etca-input" placeholder="Enter your password" value={password} onChange={(e) => setPassword(e.target.value)} />
         </div>
-        <button type="submit" className="etca-btn-primary" style={{ width: '100%', marginTop: '8px' }}>
-          Sign In
+        <button type="submit" className="etca-btn-primary" style={{ width: '100%', marginTop: '8px' }} disabled={loading}>
+          {loading ? 'Signing In...' : 'Sign In'}
         </button>
       </form>
 

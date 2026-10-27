@@ -1,7 +1,7 @@
 const STATS = [
-  { value: '500+', label: 'Students Trained' },
-  { value: '7+', label: 'Years Experience' },
-  { value: '3', label: 'Markets Covered', sub: 'Forex, Gold & Crypto' },
+  { value: '40+', label: 'Students Trained' },
+  { value: '6+', label: 'Years Experience' },
+  { value: '4', label: 'Markets Covered', sub: 'Forex, Gold, Crypto & Indian Markets' },
 ]
 
 export default function StatsSection() {

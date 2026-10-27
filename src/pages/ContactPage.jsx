@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react'
 import emailjs from '@emailjs/browser'
-
+import { supabase } from '../lib/supabase'
+console.log("SUPABASE =", supabase)
 const contactItems = [
   {
     icon: '📧',
@@ -61,34 +62,66 @@ export default function ContactPage() {
     })
   }
 
- const handleSubmit = async (e) => {
+const handleSubmit = async (e) => {
   e.preventDefault()
 
   setLoading(true)
 
   try {
-   await emailjs.send(
-  'iamcryptonist@gmail.com',
-  'template_vl3n2tz',
-  {
-    name: form.name,
-    email: form.email,
-    subject: form.subject,
-    message: form.message,
-  },
-  'JCX5fmnEpPigeR06V'
-)
-await emailjs.send(
-  'iamcryptonist@gmail.com',
-  'template_zgx38j7',
-  {
-    name: form.name,
-    email: form.email,
-    subject: form.subject,
-    message: form.message,
-  },
-  'JCX5fmnEpPigeR06V'
-)
+    // Email to Admin
+    // await emailjs.send(
+    //   'iamcryptonist@gmail.com',
+    //   'template_vl3n2tz',
+    //   {
+    //     name: form.name,
+    //     email: form.email,
+    //     subject: form.subject,
+    //     message: form.message,
+    //   },
+    //   'JCX5fmnEpPigeR06V'
+    // )
+
+    // Auto Reply to Visitor
+    // await emailjs.send(
+    //   'iamcryptonist@gmail.com',
+    //   'template_zgx38j7',
+    //   {
+    //     name: form.name,
+    //     email: form.email,
+    //     subject: form.subject,
+    //     message: form.message,
+    //   },
+    //   'JCX5fmnEpPigeR06V'
+    // )
+
+// Save to Supabase
+console.log("Supabase Client:", supabase)
+
+const session = await supabase.auth.getSession()
+console.log("Session:", session)
+
+const user = await supabase.auth.getUser()
+console.log("User:", user)
+
+const { data, error } = await supabase
+  .from("contact_messages")
+  .insert([
+    {
+      name: form.name,
+      email: form.email,
+      subject: form.subject,
+      message: form.message,
+    },
+  ])
+  .select()
+
+console.log('Supabase Data:', data)
+console.log('Supabase Error:', error)
+
+if (error) {
+  alert(JSON.stringify(error))
+  throw error
+}
 
     setSubmitted(true)
 
@@ -99,15 +132,16 @@ await emailjs.send(
       message: '',
     })
 
-  } catch (error) {
-    console.error(error)
-    alert('Message send nahi hua. Please try again.')
-  }
-
+ } catch (error) {
+  console.error('Contact form error:', error)
+  alert(`Error: ${error.message}`)
+} finally {
   setLoading(false)
 }
 
-  return (
+}   //
+
+return (
     <>
       <div className="etca-page-header">
         <div className="etca-container">
@@ -188,7 +222,7 @@ await emailjs.send(
     </p>
   </div>
 ) : (
-  <form onSubmit={handleSubmit}>
+  <form ref={formRef} onSubmit={handleSubmit}>
     <div className="etca-form-group">
       <label
         className="etca-label"
@@ -299,7 +333,7 @@ await emailjs.send(
       className="etca-btn-primary"
       style={{ width: '100%' }}
     >
-      Send Message
+      {loading ? 'Sending...' : 'Send Message'}
     </button>
   </form>
 )}

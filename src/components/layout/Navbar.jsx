@@ -13,9 +13,16 @@ const PUBLIC_LINKS = [
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [loggingOut, setLoggingOut] = useState(false)
   const { isAuthenticated, user, logout } = useAuth()
   const location = useLocation()
   const isHome = location.pathname === '/'
+
+  const handleLogout = async () => {
+    setLoggingOut(true)
+    await logout()
+    setLoggingOut(false)
+  }
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
@@ -92,10 +99,11 @@ export default function Navbar() {
                 {user?.name}
               </Link>
               <button
-                onClick={logout}
+                onClick={handleLogout}
+                disabled={loggingOut}
                 className="etca-btn-outline etca-btn-sm"
               >
-                Logout
+                {loggingOut ? 'Logging Out...' : 'Logout'}
               </button>
             </>
           ) : (
@@ -140,8 +148,8 @@ export default function Navbar() {
         {isAuthenticated ? (
           <>
             <Link to="/dashboard" onClick={() => setMenuOpen(false)}>Dashboard</Link>
-            <button onClick={logout} className="etca-btn-outline" style={{ marginTop: '16px' }}>
-              Logout
+            <button onClick={handleLogout} disabled={loggingOut} className="etca-btn-outline" style={{ marginTop: '16px' }}>
+              {loggingOut ? 'Logging Out...' : 'Logout'}
             </button>
           </>
         ) : (

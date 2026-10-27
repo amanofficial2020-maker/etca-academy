@@ -8,14 +8,18 @@ export default function RegisterPage() {
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [error, setError] = useState('')
+  const [success, setSuccess] = useState('')
+  const [loading, setLoading] = useState(false)
+  const [resending, setResending] = useState(false)
 
-  const { register } = useAuth()
+  const { register, resendVerification } = useAuth()
   const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
 
     setError('')
+    setSuccess('')
 
     if (!name || !email || !password || !confirmPassword) {
       setError('Please fill in all fields.')
@@ -32,14 +36,39 @@ export default function RegisterPage() {
       return
     }
 
+    setLoading(true)
+
     try {
       await register(name, email, password)
 
-      alert('Registration successful! Please check your email to verify your account.')
-
-      navigate('/login')
+      setSuccess('Registration successful! Please check your email to verify your account before logging in.')
     } catch (err) {
-      setError(err.message)
+      if (err.message?.includes('already registered') || err.message?.includes('already exists')) {
+        setError('An account with this email already exists. Please log in instead.')
+      } else {
+        setError(err.message || 'Registration failed. Please try again.')
+      }
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const handleResendVerification = async () => {
+    if (!email) {
+      setError('Please enter your email address first.')
+      return
+    }
+
+    setResending(true)
+    setError('')
+
+    try {
+      await resendVerification(email)
+      setSuccess('Verification email resent! Please check your inbox.')
+    } catch (err) {
+      setError(err.message || 'Failed to resend verification email.')
+    } finally {
+      setResending(false)
     }
   }
 
@@ -66,6 +95,45 @@ export default function RegisterPage() {
           }}
         >
           {error}
+        </div>
+      )}
+
+      {success && (
+        <div
+          style={{
+            background: 'rgba(212,175,55,0.1)',
+            border: '1px solid rgba(212,175,55,0.3)',
+            borderRadius: '8px',
+            padding: '16px',
+            marginBottom: '20px',
+            color: '#d4af37',
+            fontSize: '14px',
+            textAlign: 'center',
+          }}
+        >
+          <div style={{ marginBottom: '12px' }}>{success}</div>
+          <button
+            type="button"
+            onClick={handleResendVerification}
+            disabled={resending}
+            style={{
+              background: 'transparent',
+              border: '1px solid #d4af37',
+              color: '#d4af37',
+              padding: '8px 16px',
+              borderRadius: '6px',
+              cursor: 'pointer',
+              fontSize: '13px',
+              fontWeight: 600,
+            }}
+          >
+            {resending ? 'Resending...' : 'Resend Verification Email'}
+          </button>
+          <div style={{ marginTop: '12px' }}>
+            <Link to="/login" style={{ color: '#d4af37', fontWeight: 600, textDecoration: 'underline' }}>
+              Go to Login
+            </Link>
+          </div>
         </div>
       )}
 
@@ -122,8 +190,9 @@ export default function RegisterPage() {
           type="submit"
           className="etca-btn-primary"
           style={{ width: '100%', marginTop: '8px' }}
+          disabled={loading}
         >
-          Create Account
+          {loading ? 'Creating Account...' : 'Create Account'}
         </button>
       </form>
 

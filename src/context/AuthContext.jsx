@@ -57,6 +57,15 @@ export function AuthProvider({ children }) {
     return data
   }
 
+  const resendVerification = async (email) => {
+    const { error } = await supabase.auth.resend({
+      type: 'signup',
+      email,
+    })
+
+    if (error) throw error
+  }
+
   const login = async (email, password) => {
     const { data, error } = await supabase.auth.signInWithPassword({
       email,
@@ -69,7 +78,13 @@ export function AuthProvider({ children }) {
   }
 
   const logout = async () => {
-    await supabase.auth.signOut()
+    const { error } = await supabase.auth.signOut()
+
+    if (error) {
+      console.error('Logout error:', error)
+      return
+    }
+
     setUser(null)
   }
 
@@ -80,6 +95,7 @@ export function AuthProvider({ children }) {
         loading,
         login,
         register,
+        resendVerification,
         logout,
         isAuthenticated: !!user,
       }}
