@@ -1,5 +1,5 @@
 const STATS = [
-  { value: '40+', label: 'Students Trained' },
+      { value: '45+', label: 'Students Trained' },
   { value: '6+', label: 'Years Experience' },
   { value: '4', label: 'Markets Covered', sub: 'Forex, Gold, Crypto & Indian Markets' },
 ]
