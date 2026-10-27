@@ -22,8 +22,8 @@ export default function AboutSection() {
               dedicated to transforming aspiring traders into confident, profitable market participants.
             </p>
             <p style={{ color: '#a0a0a0', lineHeight: 1.7, fontSize: '16px', marginBottom: '32px' }}>
-              With over 7 years of real-market experience, our mentors teach proven
-              trading education across Forex, Gold, and Crypto markets.
+              With over 6 years of real-market experience, our mentors teach proven
+              trading education across Forex, Gold, Crypto, and Indian markets.
             </p>
             <Link to="/register" className="etca-btn-primary">Start Your Journey</Link>
           </div>
